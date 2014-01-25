@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Non-Player Characters</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+</head>
+
+<body>
+<h1>Non-Player Characters</h1>
+
+<p>In the context of this game, NPCs are agents with particular kind of
+combat behavior and the ability to initiate and finish "quests" in the game.
+They can also just talk to the player. They are grouped into races with what
+amounts to simplistic profession-based differences. When presenting quests,
+they're easily the most complicated piece in the game to create via a map.</p>
+
+<p><strong>Combat.</strong> NPCs can be peaceful or hostile (off or on). When
+a peaceful NPC is attacked on the board, all other NPCs of the same race on
+the board will become hostile and start attacking the player. (NPCs can also
+be created initially as hostiles.) </p>
+
+<p><strong>Conversation.</strong> However, if the player touches a peaceful
+NPC without wielding a weapon, conversation will ensue. NPCs have a talk
+<code>message</code> that they will show the player, unless they have
+additional quest mechanics. NPCs will not approach the player just to
+talk.</p>
+
+<p><strong>Quests.</strong> In terms of winning or losing in Asciiroth,
+everything comes down to one or more "fetch/deliver quests" where the player
+has to move items around on the boards. Even a quest to slay a monster, for
+example, needs to be expressed in terms of items ("bring its head back to
+me.") This is because items and boards are the only state in the game. So NPC
+support for quests involve setting up the expectation that the player will
+deliver something for the NPC or bring something back to the NPC. This just
+provides a way to structure the goals of a scenario (the TOA scenario
+describes the goals using messages, as the island is devoid of people, so
+that's another viable approach). </p>
+
+<p>An NPC can be given a <code>questColor</code>, a <code>doneFlag</code>, a
+<code>doneColor</code> and an <code>inQuestMsg</code> to control the
+presentation and acceptance of a quest for the character. When these are
+provided, the NPC will seek out the player within a small area and fire the
+<code>questColor</code> event when contacted. This should be used with pieces
+like <code>Messenger</code> and <code>Equipper</code> to present a quest to
+the player. If there is a <code>doneColor</code> for this NPC, it will also
+change color at this point to indicate that it is waiting to hear back on a
+quest. (You don't have to do this; the NPC can fire a color event but not
+expect to hear back from the player.)</p>
+
+<p>After that, the NPC will give the <code>inQuestMsg</code> message until
+the player contacts the NPC with the right flag (basically the right item
+although it also tests the flags that are visible to the player). The NPC
+will then fire the <code>doneColor</code>, which again should be hooked up to
+pieces like <code>Unequipper</code> and <code>Messenger</code> to close out
+the quest. After that, like non-quest NPCs, the NPC will present the normal
+<code>message</code>. Note that for NPCs who present quests, the first time
+they present <code>message</code> is after the quest has been completed, so
+in this case the message can be tailored accordingly.</p>
+
+<p>Attacking an NPC means you can no longer talk to the NPC, which eliminates
+any hope of pursuing a quest through that NPC!</p>
+
+<p><strong>Death.</strong> NPCs can fire a color event when they die. You
+could, for example, couple this with a <code>PieceCreator</code> to cause 
+the NPC to drop something upon dying (like its head).</p>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html>
+<head>
+  <title></title>
+</head>
+
+<body>
+<p>The Tombs of Asciiroth Version @app.version@. <br/>
+&copy; 2009-2014 <a href="http://purl.org/net/alxdark" target="_blank">Alx Dark</a></p>
+
+<p>The Tombs of Asciiroth and the map editor are provided under the <a
+href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0
+license</a>. See the <a href="http://icculus.org/asciiroth/"
+target="_blank">Asciiroth Home Page</a> for further information. </p>
+
+<p>The icons used in the editor are mostly from the <a
+href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">Silk
+Icons</a> set, licensed under an <a
+href="http://creativecommons.org/licenses/by/2.5/" target="_blank">Creative
+Commons Attribute 2.5 License</a>. Others are from software released by the
+Eclipse Foundation under the <a
+href="http://www.eclipse.org/org/documents/epl-v10.php"
+target="_blank">Eclipse Public License</a>. </p>
+<hr>
+
+<p>The <a href="http://icculus.org/asciiroth/map-guide.html"
+target="_blank">Guide to Creating Asciiroth Maps</a> provides extensive
+details on how to create the piece strings you must create in the editor.
+This document describes the editor itself, and the options available in the
+upper-right hand corner of the editor.</p>
+
+<h3>Main Areas of the Editor</h3>
+<dl>
+  <dt>Brush Options</dt>
+    <dd>This area tells you the X/Y location of the cursor over the map, and
+      provides a place to change the size of your "brush" to paint larger
+      areas of the board.</dd>
+  <dt>Piece Library</dt>
+    <dd>This is a complete list of the piece types (terrain, agents and
+      items) that are available for making maps. When you select one of these
+      types, it will be added to the instance editor underneath the board.
+      Except for simple pieces, this new piece instance isn't going to have
+      enough information to be a valid piece on the board.</dd>
+  <dt>Instance Editor</dt>
+    <dd>The area under the board lists all the specific game piece instances
+      that are available or being used on the board. Typically you must fill
+      out a newly added "piece key" to complete it: you must specify its
+      color, orientation, on/off state and the like. When the piece key is
+      valid, the little red ball <img alt="Invalid Piece"
+      src="icons/bullet_delete.png"> will turn into a little green ball <img
+      alt="Invalid Piece" src="icons/bullet_green.png">. You can then select
+      that piece and "paint" one or more squares on the board with it.</dd>
+  <dt>Board Area</dt>
+    <dd>The main area is the board. You basically paint the cells until you
+      have the map you desire. One thing to note is that if you shift-click
+      on a cell, you'll get an editor for that cell that can be used to
+      remove a specific piece there, or to set the player's start location at
+      that cell (more is coming).</dd>
+</dl>
+
+<h3>Editor Toolbar</h3>
+
+<p>There are nine buttons on the editor's toolbar.</p>
+<dl>
+  <dt><img alt="" src="icons/arrow_out.png"> Adjacent Board Navigation</dt>
+    <dd>Opens a panel that allows you to quickly load an adjacent board
+      (including boards above and below the current board). This is a little
+      easier than using "Open Board" to navigate back and form between
+      boards. </dd>
+  <dt><img alt="" src="icons/table_edit.png"> Board Metadata Editor</dt>
+    <dd>Opens an editor for the board's metadata (inside/outside, adjacent
+      maps, etc).</dd>
+  <dt><img alt="" src="icons/add.png"> New Board</dt>
+    <dd>Starts a new board. Will prompt you to save an existing board first.
+    </dd>
+  <dt><img alt="" src="icons/folder.png"> Open Board</dt>
+    <dd>Open an existing board (opens file dialog). </dd>
+  <dt><img alt="" src="icons/disk.png"> Save Board</dt>
+    <dd>Save board (will prompt for file name if not previously saved). </dd>
+  <dt><img alt="" src="icons/disk_multiple.png"> Save Board As</dt>
+    <dd>Save current board under a new name. </dd>
+  <dt><img alt="" src="icons/control_play_blue.png"> Preview Board (Test
+  Play)</dt>
+    <dd>Save and then open this board so you can play test it. In order for
+      this to work, you must set a startX and startY value in the board's
+      metadata. This is just a start position for the player, it will have no
+      effect on the game <em>unless</em> this board is the entrance board for
+      the scenario, in which case this is where the player will be started.
+      Similarly, you can equip the player with a start inventory, and for
+      test purposes, the player will be created with those items (this is
+      helpful whenever you are trying to test a puzzle that requires items
+      from another board). </dd>
+  <dt><img alt="" src="icons/style_add.png"> Create Board Name</dt>
+    <dd>This simply makes up a word that you can use as the name of a
+      board... it's tedious to make up board names. </dd>
+  <dt><img alt="" src="icons/help.png"> Help</dt>
+    <dd>Opens the help dialog. </dd>
+</dl>
+
+<h3>Cell Editing</h3>
+
+<p>In order to inspect the exact
+contents of a cell, <b>shift-click on the cell</b> to bring up a cell editor. The
+editor will allow you add and remove multiple items from the cell, start the
+player on that cell, or select any piece on the cell as the selected piece for 
+your brush. </p>
+
+<h3>Using the Mouse</h3>
+
+<p>Right-clicking on a cell will select the terrain on that cell as the terrain to 
+use when painting. </p>
+
+</body>
+</html>

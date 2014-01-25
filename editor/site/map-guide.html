@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Guide to Creating Asciiroth Maps</title>
+  <style type="text/css">
+body, td { background-color: black; color: white; font: 12pt Tahoma, sans-serif; margin: 5% 20%; }
+td { vertical-align: top; padding: 1px 2px; }
+.playType { width: 100px; font-weight: bold; font-variant: small-caps; }
+.playExpl {  }
+.playFor { margin: .25em; color: #999; font-size: smaller; }
+.playLink { white-space: nowrap; }
+.playDep { white-space: nowrap; width: 150px; text-align: right; }
+a { text-decoration: none; color: steelblue; font-weight: bold; }
+code { color: lightblue; }
+h3 { border-bottom: 1px dotted white; }</style>
+</head>
+
+<body>
+<!--
+<div class="header">
+<h1>Guide to Creating Asciiroth Maps</h1>
+</div>
+-->
+
+<div class="section" id="guide">
+<h3>Guide to Creating Asciiroth Maps</h3>
+
+<p>Although there's a perfectly good map editor and you should use that (it will even allow you to preview and play your maps), this guide will start by describing the game file format, because it provides some context as to what you're doing in the editor. </p>
+
+<p>The maps are described in text files using the JavaScript Object Notation
+language (JSON for short). It's a simple way to mark-up a map, and you don't
+need to know anything about JavaScript to create a map file. It's best to show 
+an example file right up front, and we can then spend the rest of this guide 
+describing how it works.</p>
+<pre>{
+    north: "test2", 
+    east: "forest-test", 
+    west: "keys", 
+    down: "test3", 
+    outside: false, 
+    startX: 19, 
+    startY: 12, 
+    diagram:[
+        "##########$#######%#####################",
+        "#####%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####",
+        "####&amp;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####",
+        "#####%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####",
+        "#####%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'####",
+        "#####################%%%%###############",
+        "#####################%%%%###############",
+        "#####################%(%%###############",
+        "#####################%%%%###############",
+        "######################%#)###############",
+        "####%%%%%%%%%#########*#%###############",
+        "####%%%%%%%%%#########%#+###############",
+        "%%%%%%%%%%%%%%%%,%%%%%%%%%%%%%%%%%%%%%%%",
+        "######%###%#####%%%%%%%%%%%%%###########",
+        "######%###%#%%%-%%%%%%%%%%%%%.%%%#######",
+        "#%%%#%%%##%#%###%%%%%%%%%%%%%###%#######",
+        "#%%%/%%%##%#%#####%#######%#####%0######",
+        "#%%%#%%%##%#%#####%#######%#####%#######",
+        "######1###%#%%%%%%%%%%%%%%%%%%%%%#######",
+        "######2###%#############################",
+        "##########%%%%%%########################",
+        "##########%%%%%%########################",
+        "##########%%%%%%########################",
+        "##########%%%%3%########################",
+        "########################################"
+    ], 
+    terrain: {
+        "#": "Wall", 
+        "$": "Shooter|southeast|Black|on", 
+        "%": "Floor", 
+        "&amp;": "Shooter|east|Black|on", 
+        "'": "Shooter|west|Black|on", 
+        "(": "StairsUp", 
+        ")": "Door|Steel Blue|on", 
+        "*": "Pit", 
+        "+": "Door|Red|off", 
+        ",": "StairsDown", 
+        "-": "Turnstile|east|Maroon", 
+        ".": "Turnstile|west|Maroon", 
+        "/": "ColorTransformer|Orange|Purple", 
+        "0": "Switch|Maroon|off", 
+        "1": "KeySwitch|Orange|off", 
+        "2": "ColorRelay|Wall|Orange|Steel Blue", 
+        "3": "Crate|Bow"
+    }, 
+    pieces: [
+        {x:4, y:10, "key":"Key|Orange"},
+        {x:16, y:13, "key":"Key|Red"},
+        {x:18, y:13, "key":"Boulder"},
+        {x:19, y:13, "key":"Gun"},
+        {x:28, y:13, "key":"Key|Steel Blue"},
+        {x:24, y:14, "key":"Pillar"},
+        {x:15, y:18, "key":"Squeaky"},
+        {x:25, y:18, "key":"Squeaky"},
+        {x:32, y:18, "key":"Squeaky"},
+        {x:15, y:20, "key":"BigHammer"}
+    ]
+}</pre>
+
+<p>The key thing to note is that a map has several components: </p>
+<ol>
+  <li>There's some metadata about the map's connection to other maps, where
+    the player should be started on the map for debugging, and whether the
+    color scheme represents an outside or inside terrain;</li>
+  <li>There's a diagram of the map;</li>
+  <li>Each symbol in the diagram is mapped to a "key" that describes the
+    terrain;</li>
+  <li>There's a collection of pieces on the map (both agents and items),
+    described by their X/Y coordinate and a "key".</li>
+</ol>
+
+<p>The map editor provides a visual means of laying out all the pieces, as well as a 
+dialog for linking the maps and providing the other metadata. But the keys for all the 
+terrain, agents and items are still entered by hand in the map editor, so I'll 
+describe those in more detail. </p>
+
+<h3>Game Pieces</h3>
+
+<p>There are three kinds of map pieces:</p>
+
+<p><strong>Terrain.</strong> Every cell of the map has one and only one
+terrain, stuff like walls, floor, or even something like a crate. Terrain
+governs how the player and other agents can move around, and terrain
+interacts with agents and items as they are thrown, shot, walk around, etc.
+</p>
+
+<p>Special terrain types are all implemented as a kind of "decoration" or
+"wrapper" around another terrain. For example, a trigger wraps another
+terrain, adding a trigger to that terrain's behavior. </p>
+
+<p><strong>Agents.</strong> Agents are defined by the fact that there can
+only be one agent in a cell at a time. So trees are agents, by this
+definition. However, most agents move around and try and kill the player.</p>
+
+<p><strong>Items.</strong> There can be any number of items on any given
+cell, and the player can pick them up, move them around, throw them, use
+them, etc.</p>
+
+<p>All three kinds of pieces are describe by a "key" that includes the type
+of the piece and then some parameters, separated by the pipe symbol. For
+example, the key <code>ColorTransformer|Orange|Purple</code> describes a
+terrain type called a Color Transformer... when the player walks across it,
+any orange items will be transformed into purple items. Another example is
+<code>Shooter|west|Black|on</code>, a more complicated piece. This describes
+a piece called a Shooter that shoots west, turns on and off when it receives
+the black color event, and starts "on" (firing in the case of this piece).
+</p>
+
+<p>The map editor provides a "template" to help when creating these pieces.
+The Color Transformer's template looks like
+<code>ColorTransformer|{color}|{color}</code>. You replace everyting between
+the braces with a valid value. The shooter's template looks like
+<code>Shooter|{direction}|{color}|{state}</code>. If the value has a question
+mark, it is optional, e.g. <code>Squeaky|{color?}</code> allows for valid
+values either like <code>Squeaky</code> or <code>Squeaky|Blue</code>. </p>
+
+<p>Finally, you can embed one key in another by escaping the nested key with
+the caret (^) rather than a pipe. For example, <code>Crate|Key^Blue</code>
+creates a crate that has a blue key inside it. It is a limitation of the game
+that you can't nested more than one deep like this. (If you find yourself in
+this situation... spread out what you're doing on the map and use utility
+decorators like <code>Flagger</code> or <code>Messenger</code>.)</p>
+
+<p>There is currently no complete list of game pieces, but they are described
+in the <a href="api/index.html">javadocs</a>, and they are all listed in the
+Piece Library palette of the map editor. The arguments after the type in the
+key map directly to the parameters passed to these pieces in their
+constructors. </p>
+
+<h3>Metadata</h3>
+
+<p>A map is linked in four cardinal directions, as well as up and down, to
+other maps, by six properties: <code>north</code>, <code>south</code>,
+<code>east</code>, <code>west</code>, <code>up</code> and <code>down</code>.
+These values are the names of other map files without their ".js" extension.
+For example, if a map declares <code>north: "cranston"</code>, then the game
+will look for the file <code>cranston.js</code>. They are optional. </p>
+
+<p>A scenario is contained entirely in a folder, and consists of one or more
+maps. The "entry" map must be named <code>start.js</code>. The
+<code>start.js</code> map and any other map you'd like to preview in the map
+editor need to have a <code>startX</code> and <code>startY</code> property.
+These tell the game where to start the player.</p>
+
+<p>Finally, there is a boolean property, <code>outside</code>, that indicates
+whether the color scheme of the map is outside or inside. Be aware that
+terrain types tend to be for one or the other setting, and don't mix well
+(e.g. outside terrain tends to be light, and expects the player's symbol will
+be black).</p>
+
+<h3>Creating Scenarios</h3>
+
+<p>All of the maps in a scenario go into a single folder, along with any HTML files you wish to refer to through scrolls. One of these maps, the starting map for the scenario, must be saved as the file <code>start.js</code>. In the map editor, there are a number of fields that are required for a start map that you can edit in the metadata editor: </p>
+
+<ul>
+    <li>The player's initial starting X/Y position; </li>
+    <li>Any initial inventory you'd like the player to have; </li>
+    <li>The name of the scenario; </li>
+    <li>The creator of the scenario; </li>
+    <li>A brief description of the scenario; </li>
+</ul>
+
+<p>In the AIR version of the game, from the new game dialog, you'll see a <code>Load</code> button. Using that, you can select the <u>folder</u> that contains your scenario, and play it from there. The only restriction is that you cannot move the folder or you'll invalidate any saved games using that scenario. </p> 
+
+<p>The web version must have the scenario included in the game distribution in order to work... which I'm more than happy to do, just let me know if you've got a scenario to include. </p>
+
+</div>
+</body>
+</html>

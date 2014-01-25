@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Font Test</title>
+
+<style type="text/css">
+div { margin: .5em 2em; font-size: 14pt; }
+div div span { border: 1px solid silver; }
+
+</style>
+<script>
+function $(id) {
+    return document.getElementById(id);
+}
+function update() {
+    $("symbols").style.fontFamily = $("fontFamily").value;
+}
+</script>
+    
+</head>
+<body>
+
+<input type="text" id="fontFamily"/> <button onclick="update()">Update Font</button><br/>
+<a href="http://www.alanwood.net/demos/wgl4.html">Windows Glyph List (appear to be the reliably available symbols on Windows)</a>
+
+<div id="symbols" style="margin: 2em">
+    <div><span>The quick brown fox jumped over the lazy dog.</span></div>
+    <div><span>Sat</span></div>
+    <div><span>ZOO</span></div>
+    <div><span>&infin;&part;&Omega;</span></div>
+    <div><span>&#8903;</span></div>
+    <div><span>&#8759;</span></div>
+    <div><span>&#8752;</span></div>
+    <div><span>&#9658;</span></div>
+    <div><span>&#9677;</span></div>
+    <div><span>&#677;</span></div>
+    <div><span>&#419;</span></div>
+    <div><span>&#9544;</span></div>
+    <div><span>&#10048;</span></div>
+    <div><span>&#9765;</span></div>
+    <div><span>&#9832;</span></div>
+    <div><span>&#9792;</span></div>
+    <div><span>&#8846;</span></div>
+    <div><span>&#8945;</span></div>
+    <div><span>&#9788;</span></div>
+</div>
+
+</body>
+</html>

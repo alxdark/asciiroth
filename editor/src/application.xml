@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/1.0">
+    <id>us.asciiroth.editor.Launch</id>
+    <version>@app.version@</version>
+    <filename>Tombs of Asciiroth Editor</filename>
+	<name>Tombs of Asciiroth Editor</name>
+	<description>The Tombs of Asciiroth Map Editor.</description>
+	<copyright>Copyright 2008, Alx Dark</copyright>
+    <initialWindow>
+        <content>Editor.html</content>
+        <visible>true</visible>
+        <width>810</width>
+        <height>763</height>
+		<minimizable>true</minimizable>
+		<maximizable>false</maximizable>
+		<resizable>true</resizable>
+    </initialWindow>
+	<icon>
+		<image16x16>icons/asciiroth_editor_16.png</image16x16>
+		<image32x32>icons/asciiroth_editor_32.png</image32x32>
+		<image48x48>icons/asciiroth_editor_48.png</image48x48>
+		<image128x128>icons/asciiroth_editor_128.png</image128x128>
+	</icon>
+    <installFolder>Tombs of Asciiroth</installFolder>
+    <programMenuFolder>Tombs of Asciiroth</programMenuFolder>
+</application>

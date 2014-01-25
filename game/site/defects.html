@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>The Tombs of Asciiroth: Defects</title>
+  <link rel="stylesheet" type="text/css" href="asciiroth.css">
+</head>
+
+<body>
+
+<div class="header">
+<h1>The Tombs of Asciiroth</h1>
+
+<h2>Defects</h2>
+
+<table class="defects" width="100%" border="0" cellspacing="2">
+  <tbody>
+    <tr>
+      <th>Defect</th>
+      <th>System</th>
+      <th>Note</th>
+      <th>Fixed In</th>
+    </tr>
+    <tr>
+    	<td>Right at the end of the TOA scenario, there was a bug where you couldn't activate the 
+    	transporter. This is possibly the meanest thing I've ever done to users in all my time 
+    	making user interface software. </td>
+    	<td>all</td>
+    	<td>0.6.3</td>
+    	<td>Fixed. Saved games should work, this was in the logic not the data files. </td>
+    </tr>
+    <tr>
+      <td>when agents die via AgentDestroyer piece, no death-related color event occurs. </td>
+      <td>&#151;</td>
+      <td>0.6.2</td>
+      <td>Arguable if this should happen, but decided to do it. Fixed. </td>
+    </tr>
+    <tr>
+      <td>doors that are part of a dual terrain tile don't receive color messages like normal doors. </td>
+      <td>&#151;</td>
+      <td>0.6</td>
+      <td>The visible/active terrain embedded in a dual terrain now receives color events, as well as the dual terrain</td>
+    </tr>
+    <tr>
+      <td>agents that come to life from statues on mimic terrain aren't able to move. the situation i encountered was a rhindle on a piece of floor masquerading as sky. i didn't test this with any other combination. agents seem otherwise capable of walking on mimic terrain fine.</td>
+      <td>&#151;</td>
+      <td>0.6</td>
+      <td>Changed agent behavior relative to mimics (they see actual terrain now and move accordingly)</td>
+    </tr>
+    <tr>
+      <td>capitalized board names are treated differently from lowercase ones</td>
+      <td>&#151;</td>
+      <td>0.6</td>
+      <td>Can't fix as file names themselves are case sensitive</td>
+    </tr>
+    <tr>
+      <td>Triggers not firing around HOTA</td>
+      <td>&#151;</td>
+      <td>0.5.2</td>
+      <td>Ruined end game!</td>
+    </tr>
+    <tr>
+      <td>Mouse repeat doesn't work, you have to click over and over</td>
+      <td>&#151;</td>
+      <td>Have no idea how to fix this</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Change font size, and dialogs are not positioned over cells</td>
+      <td>FF3</td>
+      <td>True if "Zoom Text Only" is not set, so probably a FAQ type
+      thing</td>
+      <td>&#151;</td>
+    </tr>
+    <tr>
+      <td>Can't load a scenario once you've made it</td>
+      <td>&#151;</td>
+      <td>There's now a feature to load a scenario from disk. </td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Can't save at different points in game</td>
+      <td>&#151;</td>
+      <td>Now you can rename your saved game to have multiple save points</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Cannot pick up items thrown onto chest/crate/urn</td>
+      <td>&#151;</td>
+      <td>Default action when moving toward low objects is to pick up such
+        items if they exist</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Game swallows <em>all</em> key events, including events to control
+        browser</td>
+      <td>FF3+</td>
+      <td>No longer</td>
+      <td>0.4.3</td>
+    </tr>
+    <tr>
+      <td>InputManager does not regain focus after using mouse navigation</td>
+      <td>Mac/FF3</td>
+      <td>Switched from focus panel to document event preview; fixed?</td>
+      <td>0.4.3</td>
+    </tr>
+    <tr>
+      <td>Don't see inventory message when there's more than 10 items on
+      cell</td>
+      <td>&#151;</td>
+      <td></td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>Click on scroll in inventory, then click it again while dialog is
+        open, strange behavior occurs</td>
+      <td>FF3+</td>
+      <td>Game now accepts no input via mouse when it is paused</td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>TOA: you can walk into the ocean and be trapped there (bee map)</td>
+      <td>&#151;</td>
+      <td></td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>Quest-providing NPCs too easy to kill or piss off</td>
+      <td>&#151;</td>
+      <td>NPCs with quests cannot be attacked and will no longer become
+        hostile</td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>Timer fires at frame 0</td>
+      <td>&#151;</td>
+      <td>Now fires for first time at indicated frame</td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>Font symbols wrong when Arial Unicode is not installed</td>
+      <td>Win</td>
+      <td>Switched to more widely supported symbols</td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>Can't use "1" on French keyboard, &lt;&gt; on Spanish keyboard,
+        &gt; on Swedish keyboard, &gt; just doesn't work</td>
+      <td>Win</td>
+      <td>Revised key mappings. Now p = pick up and z = go up/down.</td>
+      <td>0.4.2</td>
+    </tr>
+    <tr>
+      <td>hjkl in the docs are wrong</td>
+      <td>&#151;</td>
+      <td></td>
+      <td>0.4.2</td>
+    </tr>
+    <!--
+    <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+    -->
+  </tbody>
+</table>
+
+<div class="footer">
+© 2009-2014 <a href="http://purl.org/net/alxdark">Alx Dark</a> - <a
+href="mailto:alxdark@icculus.org">alxdark@icculus.org</a> - All Rights
+Reserved </div>
+</div>
+</body>
+</html>

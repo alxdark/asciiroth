@@ -1,0 +1,164 @@
+html, td { cursor: url("cursor.png"), auto; }
+html, body { overflow: hidden; background-color: black; color: white; -khtml-user-select: none;
+	-webkit-user-select: none; -moz-user-select: none; user-select: none; }
+body, td { font: 9pt Trebuchet MS, sans-serif; }
+a { font: 9pt Trebuchet MS, sans-serif; color: steelblue; cursor: url("cursor.png"), auto; }
+/* Eliminates annoying focus border around the widget receiving key events. */
+:focus { -moz-outline-style: none; }
+small { color: steelblue; }
+
+#linkBar { text-align: center; margin-top: .5em; }
+#linkBar div.gwt-Hyperlink, #linkBar div.gwt-Label, #linkBar div.gwt-HTML { display: inline; }
+#loading { 
+	background-color: #333; color: white; visibility: visible; font-weight: bold; 
+	padding: 1em 2em; border: 2px groove rgb(246,227,188); border-radius: 6px; 
+	-moz-border-radius: 6px; -webkit-border-radius: 6px; opacity: .8;
+	text-align: center; }
+
+#layout { visibility: hidden; }
+#title { font: 13pt Georgia, serif; padding-top: 10px; }
+#boardPanel { border-space: collapse; border: 3px double #333333; }
+
+/* --------------------------------------------------- */
+/* Dialogs */
+/* --------------------------------------------------- */
+
+.n-dialog { background-color: silver; padding: .5em 1em;
+    border: 2px groove rgb(246,227,188); border-radius: 6px;
+    -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+.n-mainMenu { padding-top: 1em; }
+
+.n-dialog a, .n-dialog td, .n-dialog div { font-size: 10pt; color: black; }
+.n-dialog .gwt-Label, .n-dialog .gwt-ListBox, .n-dialog .gwt-TextBox, .n-dialog .gwt-HTML {
+    cursor: url("cursor.png"), auto; }
+.n-dialog .gwt-HTML { cursor: url("cursor.png"), auto; }
+.n-dialog .scroller { border: 1px solid #666; background-color: #E5E5E5; margin-top: .5em; }
+.n-dialog .scroller .gwt-HTML { padding: .25em .75em; }
+.n-hover { border: 1px solid black; background: #666 url("gradient.png") bottom repeat-x;
+    cursor: url("cursor.png"), auto; }
+.n-button-selected { font-weight: bold; }
+.n-buttonBar button { margin: .75em .5em .5em 0; }
+.n-buttonBar { clear: both; }
+
+button { padding: 2px 0em 0em 0em; text-align: center; border: 1px outset black;
+    background: #666 url("gradient.png") top repeat-x; cursor: url("cursor.png"), auto;
+    font: 11pt serif; color: black; white-space: pre; letter-spacing: 3px; }
+td .n-button { margin-right: .5em; }
+
+.n-mainMenu button { display: block; margin-bottom: .5em; margin-right: .5em; }
+.n-appBar button { padding-bottom: 4px; }
+.n-appBar { padding-right: 3px; }
+fieldset { margin-bottom: .5em; }
+
+/* The 10.5pt line-spacing makes almost no difference except on IE it fixes the vertical 
+    spacing when certain characters are rendered in the cells. Right now IE does not 
+    show some of the letters... presume there's a differen font being used. */
+.n-grid td span { display: block; font: 11pt/10.5pt "Liberation Mono", "Courier New", 
+    "Courier", monospace; width: 1em; cursor: default; cursor: url("cursor.png"), auto; } /* 8pt */
+
+.n-grid td { text-align: center; font: 11pt/10.5pt "Liberation Mono", "Courier New", 
+    "Courier", monospace; width: 1em; cursor: default; cursor: url("cursor.png"), auto; } /* 8pt */
+
+#sideViews { width: 17em; vertical-align: top; }
+.paddingTable { padding: 2px 4px; }
+
+.n-sideView { margin-bottom: .5em; }
+.n-sideView div.content td { font: 8pt/8.5pt Tahoma, serif; vertical-align: top; }
+
+/*	May be too big at the expense of inventory; may revisit in order to make inv. 13 items 
+	Further, we might want to position absolute and show the whole thing on mouseover, 
+	to hide the native scrollbar. */
+.flagsContent { height: 40px; overflow-y: auto; }
+
+#invContent { height: 200px; }
+
+.n-sideView .title {
+    background-color: #333;
+    border-bottom: 1px solid lightyellow;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+}
+.n-sideView .content { 
+	background-color: #222;
+	/* padding: 2px 4px; */
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+}
+.healthBar { border: 1px inset #800000; width: 120px; }
+.hover { border: 1px dotted #555 ! important; }
+
+.selectedItem { background-color: #555; padding: 2px 3px; border-radius: 2px; 
+    -moz-border-radius: 2px; -webkit-border-radius: 2px; border: 1px solid #555;
+}
+.notSelectedItem { padding: 2px 3px; border-radius: 2px; -moz-border-radius: 2px;
+    -webkit-border-radius: 2px; border: 1px solid #222;
+}
+.n-arrow { font: 11pt/10pt "Liberation Mono", "Courier New", "Courier", monospace; opacity: .9; }
+.n-message {
+    border: 1px solid #FFFFFF;
+    padding: 2px 4px;
+    background-color: #000000;
+    width: 14em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    opacity: .7;
+}
+.n-messageModal {
+    border: 1px solid #FFFFFF;
+    padding: 2px 4px;
+    background-color: #000000;
+    width: 18em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    opacity: .8;
+}
+.n-messageDialog {
+    border: 1px solid #FFFFFF;
+    padding: 2px 4px;
+    background-color: #000000;
+    width: 20em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    opacity: .7;
+    line-height: 10pt;
+}
+.n-info {
+    border: 1px solid #FFFFFF;
+    padding: 2px 4px;
+    background-color: #000022;
+    width: 14em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    opacity: 1.0;
+}
+.n-dialog .gwt-ListBox { float: left; }
+.n-dialog .gwt-Label { margin: .5em 0em 2px 0em; }
+.n-details { width: 14em; margin: 0em .5em; padding: 0em .25em; float: right; float: left; }
+.n-details .n-name { font-weight: bold; border-bottom: 1px dotted black; }
+.n-details .n-creator { font-style: italic; margin: .25em 0em; }
+.n-details .n-description {}
+div.n-error { color: #B22222; font-weight: bold; padding-top: .25em; }
+.n-errorDialog { margin-top: .5em; }
+
+input, select { border: 1px solid #333; }
+input, option { padding: 2px 3px; }
+
+
+/* Used to mark (or not) the terrain as rendered on the grid. */
+.s { font: 11pt/10.5pt "Liberation Mono", "Courier New", "Courier", monospace; }
+/* The color white is immediately overridden by the explicit color. */
+.sc { font: 11pt/10.5pt "Liberation Mono", "Courier New", "Courier", monospace; background: transparent url(icons/decorator.gif) bottom right no-repeat; }

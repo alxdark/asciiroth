@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<project name="The Tombs of Asciiroth" basedir="." default="compile">
+    <description>The Tombs of Asciiroth</description>
+	<!--
+		ant compile-air; adl src/adl.xml .       to build and run AIR version
+		ant compile                              compile the web version (takes longer)
+		ant dist; cd ../editor/; ant dist        to create entire dist in game/dist
+	-->
+    
+    <property file="build.properties"/>
+
+    <path id="classpath">
+        <pathelement location="./src" />
+        <pathelement location="./bin" />
+        <pathelement location="${GWT_HOME}/gwt-user.jar" />
+        <pathelement location="${GWT_HOME}/gwt-dev.jar" />
+    </path>
+    
+    <macrodef name="gwt-compiler">
+        <attribute name="gwt-module-classpath"/>
+        <attribute name="app-dir"/>
+        <attribute name="app-entry-class"/>
+        <sequential>
+            <java className="com.google.gwt.dev.Compiler" fork="true" failonerror="true">
+                <jvmarg value="-Xmx1024m"/>
+                <jvmarg value="-Xms1024m"/>
+                <classpath>
+                    <path refid="classpath"/>
+                    <pathelement location="@{gwt-module-classpath}"/>
+                </classpath>
+				<!-- <arg value="-ea"/> -->
+                <arg value="-style"/>
+                <arg value="OBF"/>
+                <arg value="-war"/>
+                <arg value="@{app-dir}"/>
+                <arg value="@{app-entry-class}"/>
+            </java>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="adt-packager">
+        <attribute name="app-filename"/>
+        <attribute name="app-dir"/>
+        <attribute name="app-entry-class"/>
+        <sequential>
+            <java jar="${AIR_HOME}/lib/adt.jar" fork="true" failonerror="true">
+                <arg value="-package"/>
+                <arg value="-storetype"/>
+                <arg value="pkcs12"/>
+                <arg value="-keystore"/>
+                <arg value="../game/aircert.pfx"/>
+                <arg value="-storepass"/>
+                <arg value="4ntw3rp"/>
+                
+                <arg value="dist/@{app-filename}.air"/>
+                <arg value="dist/@{app-filename}/application.xml"/>
+                <arg value="-C"/>
+                <arg value="@{app-dir}/@{app-entry-class}"/>
+                <arg value="."/>
+            </java>    
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="stamp-output">
+        <attribute name="air-descriptor"/>
+        <sequential>
+            <copy file="src/application.xml" todir="@{air-descriptor}"/>
+            <replace dir="dist">
+                <replacefilter token="@app.date@" value="${app.date}"/>
+                <replacefilter token="@app.version@" value="${app.version}"/>
+                <exclude name="**/api/*"/>
+                <include name="index.html"/>
+                <include name="**/about.html"/>
+                <include name="**/help.html"/>
+            	<include name="**/editor-help.html"/>
+                <include name="**/*.xml"/>
+            </replace>
+        </sequential>
+    </macrodef>
+
+    <target name="clean">
+        <!-- GWT/Eclipse project temp directories. -->
+        <delete dir="dist" quiet="true"/>
+        <delete dir="bin" quiet="true"/>
+        <delete dir=".gwt-cache" quiet="true"/>
+        <delete dir="tomcat" quiet="true"/>
+    </target>
+    
+    <target name="prepare">
+        <mkdir dir="dist"/>
+        <mkdir dir="bin"/>
+    </target>
+    
+    <target name="compile-air" depends="prepare"
+        description="For development, compile only the AIR version of the game">
+        <gwt-compiler gwt-module-classpath ="resources/air-game"
+                      app-dir              ="dist/air"
+                      app-entry-class      ="us.asciiroth.Launch"/>
+    </target>
+    
+    <target name="compile" depends="prepare"
+        description="Produces JavaScript web site. Java only compiled for jar file">
+        
+        <!-- Make two versions: the full version for web access, and a version that
+            only contains permutations for inclusion in the AIR release (either the
+            game, or the game in the editor for previews). -->
+        
+        <gwt-compiler gwt-module-classpath ="resources/air-game"
+                      app-dir              ="dist/air"
+                      app-entry-class      ="us.asciiroth.Launch"/>
+
+        <gwt-compiler gwt-module-classpath ="resources/full-game"
+                      app-dir              ="dist/web"
+                      app-entry-class      ="us.asciiroth.Launch"/>
+    </target>
+
+    <!-- These have not been adjusted to run with the editor because it's completely
+        tied to AIR, and won't run in hosted mode. This is fixable if I create a 
+        GearsEditorStore, etc. -->
+    
+    <target name="hosted" depends="prepare"
+        description="Run the hosted mode browser">
+        <java classname="com.google.gwt.dev.GWTShell" fork="true">
+            <jvmarg value="-Xms256M"/>
+            <jvmarg value="-Xmx512M"/>
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="resources/full-game"/>
+            </classpath>
+            <arg value="-out" />
+            <arg value="dist/web"/>
+            <arg value="us.asciiroth.Launch/Game.html" />
+        </java>
+    </target>
+
+    <target name="debug" depends="prepare"
+        description="Run GWT shell in debug mode on port 3408">
+        <java classname="com.google.gwt.dev.GWTShell" fork="true">
+        	<jvmarg value="-Xdebug"/>
+        	<jvmarg value="-Xnoagent"/>
+        	<jvmarg value="-Djava.compiler=NONE"/>
+        	<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,address=3408,suspend=y"/>
+            <jvmarg value="-Xms256M"/>
+            <jvmarg value="-Xmx512M"/>
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="resources/full-game"/>
+            </classpath>
+            <arg value="-out" />
+            <arg value="dist/web"/>
+            <arg value="us.asciiroth.Launch/Game.html" />
+        </java>
+    </target>
+	
+    <target name="docs" depends="prepare">
+        <copy todir="dist">
+            <fileset dir="site"/>
+        </copy>
+		<!-- It would be cool to write a doclet that collects annotated class
+		     documentation into a piece glossary, for players and map creators. -->
+        <javadoc packagenames="*"   sourcepath="src"                       
+                 destdir="dist/api" nodeprecated="true"
+                 public="true"      nodeprecatedlist="true"
+                 author="true"      version="true"
+                 use="true"         windowtitle="Tombs of the Asciiroth API"
+                 footer="${app.version}"
+                 doctitle="&lt;h1&gt;Tombs of the Asciiroth API&lt;/h1&gt;"
+                 bottom="&lt;p style=&quot;text-align:center&quot;&gt;&lt;i&gt;&#169; ${app.year} Alx Dark&lt;/i&gt;&lt;/p&gt;">
+            <classpath refid="classpath"/>
+        </javadoc>
+    </target>
+    
+    <target name="cert">
+        <java jar="${AIR_HOME}/lib/adt.jar" fork="true" failonerror="true">
+            <arg value="-certificate"/>
+            <arg value="-cn"/>
+            <arg value="AsciirothAirCertificate"/>
+            <arg value="1024-RSA"/>
+            <arg value="aircert.pfx"/>
+            <arg value="4ntw3rp"/>
+        </java>
+    </target>
+    
+    <target name="air" depends="prepare, compile, stamp">
+        <adt-packager app-filename="asciiroth"
+                      app-dir="dist/air"
+                      app-entry-class="us.asciiroth.Launch"/>
+    </target>
+
+    <target name="stamp">
+        <stamp-output air-descriptor="dist/asciiroth"/>
+    </target>
+
+    <!-- Stamp the files before bundling them into AIR app. -->    
+    <target name="dist" depends="compile, docs, stamp, air"/>
+</project>

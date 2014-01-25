@@ -1,0 +1,40 @@
+/* Title bar */
+#layout { margin-top: 5px; }
+#title { white-space: pre; }
+#dirtyIcon { visibility: hidden; }
+
+.n-typePalette { border: none; background-color: transparent; color: white; }
+.n-typePalette td { padding: 0px 2px; }
+
+.n-appBar button { padding-bottom: 4px; }
+.n-appBar { padding-right: 3px; }
+#instancePaletteHolder { margin-left: -3px; border: 3px double #333; width: 100%; height: 200px; overflow-y: scroll; }    
+
+.n-cellEditor .gwt-HTML, .n-cellEditor .gwt-Label { display: inline; }
+.n-cellEditor td {padding: 2px 10px 2px 2px;}
+.n-cellEditor a { text-decoration: none; color: darkblue; }
+.n-cellEditor .n-ceSymbol { width: 10px; }
+.n-cellEditor .n-ceKey { width: 100%; }
+.n-cellEditor .gwt-Hyperlink { display: inline; margin-left: 5px; }
+.n-fieldLabel { display: block; float: left; width: 12em; clear: both; }
+.n-metadata input, .n-metadata label, .n-metadata div { margin-bottom: 5px; } 
+
+.n-sideView .gwt-TextArea, .n-instanceEditor td .gwt-TextArea { border: 1px solid #333;
+	background-color: inherit; height: 18px; font-size: 9pt; color: white; letter-spacing: 2px; } 
+
+.n-instanceEditor td { padding: 1px 3px; }
+.n-instanceEditorSelected td { padding: 1px 3px; background-color: #333; }
+.n-instanceEditorSelected td .gwt-TextArea { border: 1px solid #333;
+	background-color: inherit; height: 18px; font-size: 9pt; color: white; letter-spacing: 2px; }
+
+.n-appBar { float: right; background-color: #555; border-radius: 4px; -webkit-border-radius: 4px;
+    -moz-border-radius: 4px; padding-top: 5px; padding-left: 7px; }
+.n-appBar td { text-align: center; }
+.n-appBar button.gwt-Button { border: none; background: none; }
+
+#makeName { color: yellow; }
+
+.gwt-DisclosurePanel { width: 100%; }
+.gwt-DisclosurePanel a { width: 100%; background-color: #333; text-decoration: none;
+	font-weight: bold; border-top: 1px solid black; }
+.gwt-DisclosurePanel td { vertical-align: middle ! important; }

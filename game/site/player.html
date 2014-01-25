@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>The Tombs of Asciiroth: Player's Guide</title>
+<link rel="stylesheet" type="text/css" href="asciiroth.css" />
+<script type="text/javascript" src="jquery-1.2.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var section = (document.location.hash) ? document.location.hash.substring(1) : "general";
+    toggle(section);
+    $("a.secLink").click(function(event) {
+        // next two lines prevent scrolling in Firefox
+        event.preventDefault();
+        document.location.hash = this.href.split("#")[1];
+        toggle(this.href.split("#")[1]);
+    });
+    function toggle(id) {
+        $("a.secLink").removeClass("selected").each(function() {
+            if (this.href.split("#")[1] == id) {
+                $(this).addClass("selected");
+            }
+        });
+        $("div.section").hide();
+        $("div#"+id).show();
+    }
+});
+</script>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>The Tombs of Asciiroth</h1>
+    <h2>Player's Guide</h2>
+    <div class="navcontainer">
+        <ul class="navlist">
+            <li><a class="secLink selected" href="#general">General</a></li>
+            <li><a class="secLink" href="#items">Items</a></li>
+            <li><a class="secLink" href="#weapons">Weapons</a></li>
+            <li><a class="secLink" href="#powerups">Power-Ups</a></li>
+            <li><a class="secLink" href="#artifacts">Artifacts</a></li>
+            <li><a class="secLink" href="#monsters">Monsters</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section" id="general">
+
+<p>You can use the mouse to play... try it. Clicking on yourself will usually do the obvious thing you'd like to do, though sometimes you'll have to revert to the keyboard. Some things are easier with the mouse (fishing) and some are easier with the keyboard (fighting). </p>
+
+<p>Each board typically stands alone. You may need some items from other boards to complete it. The trickiest aspect of this can be determining whether you have the right weapons or items to complete the board... it may be difficult or impossible to complete without specific items. </p>
+
+<p>If you save before you manipulate the board, you should be able to work through it without losing a lot of blood. You'll want to explore everything on the board, and ensure that at the end of the puzzle, it's still possible to return the way you came. You may have to restart the board a few times until you determine the best way through. </p>
+
+<p>Learn how to reorder your inventory and put your best weapon at the top of the list. Use &ldquo;w&rdquo; to switch to that weapon. </p>
+
+<p>Sometimes you'll need to use or throw an item, then immediately use your weapon. Order your inventory so the key or other item is right after your weapon. Then when you lose it, your inventory will automatically fall back to the previous item... which will be your weapon. </p>
+
+<p>Sometimes, dropping all your unnecessary items can be helpful as well. There are no monsters that will mess with stuff on the ground, so this is safe. </p>
+
+</div>
+
+<div class="section" id="items">
+
+<dl>
+<dt><span style="color: red" class="s">&otilde;</span> Apple</dt>
+<dd>A nutritious apple (heals 5 points). </dd>
+
+<dt><span style="color: tan" class="s">&infin;</span> Bread</dt>
+<dd>Life-sustaining bread (heals 10 points). A twisting-braidy kind. </dd>
+
+<dt><span style="color: #BDB76B" class="s">&alpha; &prop;</span> Fish</dt>
+<dd>Some ponds and lakes have fish. If you have a fishing pole, you can fish by selecting the pole and moving into the water when the fish appears next to shore. Fish can be eaten to heal 25 points, or they can be left on the ground, where they will distract some monsters and prevent them from attacking you. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&iota;</span> Bone</dt>
+<dd>Many monsters would rather chase after meaty items like bones and fish, than chase after you. You can turn this fact to your advantage. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">-</span> Chalk</dt>
+<dd>Not terribly useful unless you find yourself in a maze, where it can be used to mark your progress. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">] &int;</span> Crowbar</dt>
+<dd>Can be used to pry open crates. It will also serve as a melee weapon, in a pinch. </dd>
+
+<dt><span style="color: rgb(139, 69, 19)" class="s">&#383;</span> Fishing Pole</dt>
+<dd>With a fishing pole, you can catch fish. See fish. </dd>
+
+<dt><span style="color: rgb(255, 215, 0)" class="s">&bull;</span> Gold Coin</dt>
+<dd>A gold coin may be useful in some scenarios to shop at a vending machine (<span style="color: rgb(255, 215, 0); background-color: rgb(51, 51, 51);" class="s">&#247;</span>). In other scenarios, you may be able to throw it into a well (<span style="color: rgb(69, 93, 139); background-color: rgb(0, 0, 0);" class="s">&#1060;</span>), and good things will happen to you. But wells will only work one time per game. </dd>
+
+<dt><span style="color: rgb(70, 130, 180)" class="s">&#126;</span> Key</dt>
+<dd>Keys open doors. The color of the key must match the color of the door in order to open it. </dd>
+
+<dt><span style="color: rgb(192, 192, 192)" class="s">&bull;</span> Rock</dt>
+<dd>It can be thrown against switches. I hadn't realized until writing this, that rocks are really pretty useless. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&sect;</span> Scroll</dt>
+<dd>For your edification, written materials are provided from within the game. Just select and read it. </dd>
+
+</dl>
+
+</div>
+
+<div class="section" id="weapons">
+
+<p><em>"wielded" means the item is selected in your inventory.</em></p>
+
+<p>As of 0.7, scenario designers can choose to use ranged weapons that require ammunition. 
+This kind of weapon is marked with an &ordf; symbol in your inventory. </p>
+
+<dl>
+<dt><span style="color: silver" class="s">+</span> Knife</dt>
+<dd>A melee weapon. </dd>
+
+<dt><span style="color: silver" class="s">&tau;</span> Hammer</dt>
+<dd>A melee weapon. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&dagger;</span> Sword</dt>
+<dd>A melee weapon. Wielding it improves your chances of hitting a monster. </dd>
+
+<dt><span style="color: saddlebrown" class="s">&thetasym;</span> Sling</dt>
+<dd>A ranged weapon (less powerful than the bow). Hold shift (or control) and select a direction to fire it. </dd>
+
+<dt><span style="color: rgb(139, 69, 19)" class="s">)</span> Bow</dt>
+<dd>A ranged weapon. Hold shift (or control) and select a direction to fire it. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&not;</span> Gun</dt>
+<dd>The best ranged weapon available. Hold shift (or control) and select a direction to fire it. </dd>
+
+<dt><span style="color: rgb(128, 128, 0)" class="s">&sigma;</span> Grenade</dt>
+<dd>A grenade can be thrown and it explodes when it hits something. It is an effective weapon, but it can be hard to hit things. Be careful not to explode it near yourself! </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&delta;</span> Bomb</dt>
+<dd>These will explode if any monster walks on top of them (except for yourself). They are the safest way to kill monsters, and it is relatively easy to lure monsters across them. </dd>
+
+<dt><span style="color: rgb(148, 0, 211)" class="s">&not;</span> Paralyzer</dt>
+<dd>A ranged weapon that shoots paralyzing bullets. These temporarily disable monsters but do not kill them. They are effective against monsters that cannot otherwise be killed. </dd>
+</dl>
+
+</div>
+
+<div class="section" id="powerups">
+
+<p><em>"worn", means the item is selected in your inventory. "eaten", "drunk" or "used" means you have pressed ENTER while the item is selected. </em></p>
+
+<dl>
+<dt><span style="color: rgb(255, 0, 0)" class="s">&#9829;</span> Healer</dt>
+<dd>When used, the healer will restore up to 50 of your 255 health points. </dd>
+
+<dt><span style="color: rgb(127, 255, 0)" class="s">¡</span> Kelp Smoothie</dt>
+<dd>When drunk, the kelp smoothie will make you impervious to poisoning. When you are poisoned, you cannot heal. However, each time this protection is used, there is a chance that it will wear off. </dd>
+
+<dt><span style="color: rgb(255, 218, 185)" class="s">¡</span> Peach Elixir</dt>
+<dd>When drunk, the peach elixir will make you impervious to attacks that turn you to stone. However, each time this protection is used, there is a chance that it will wear off. </dd>
+
+<dt><span style="color: rgb(205, 133, 63)" class="s">&theta;</span> Copper Pill</dt>
+<dd>When eaten, the copper pill will make you impervious to paralysis attacks. Paralysis prevents you from moving or changing inventory for a few seconds. However, each time this protection is used, there is a chance that it will wear off. </dd>
+
+<dt><span style="color: rgb(222, 184, 135)" class="s">=</span> Protein  Bar</dt>
+<dd>When eaten, a protein bar will cure weakness. (When you are weakened, you can only carry one item at a time, and you are unable to push things.)</dd>
+
+<dt><span style="color: rgb(128, 0, 128)" class="s">&#9824;</span> Purple Mushroom</dt>
+<dd>When eaten, this mushroom will cure poisoning. When you are poisoned, you cannot heal.</dd>
+
+<dt><span style="color: rgb(0, 0, 255)" class="s">o</span> Blue Ring</dt>
+<dd>While you wear the blue ring, you can walk through water. </dd>
+
+<dt><span style="color: rgb(255, 0, 0)" class="s">o</span> Red Ring</dt>
+<dd>While you wear this ring, you can walk through lava and you are resistant to fire attacks. </dd>
+</dl>
+
+</div>
+
+
+<div class="section" id="artifacts">
+<p><em>These items are unique and they may or may not appear in a scenario. "wield", means the item is selected in your inventory. "used" means you have pressed ENTER while the item is selected. </em></p>
+
+<dl>
+<dt><span style="color: rgb(255, 215, 0)" class="s">Y</span> The Chalice</dt>
+<dd>Remember &ldquo;Adventure&rdquo; for the Atari 2600? Same thing. Useless. </dd>
+
+<dt><span style="color: rgb(0, 250, 154)" class="s">&Theta;</span> The Glass Eye</dt>
+<dd>When you wield the glass eye, it allows you to see hidden things, like secret passages and traps. </dd>
+
+<dt><span style="color: rgb(255, 215, 0)" class="s">&#1513;</span> The Golden Harp</dt>
+<dd>Quite definitely useless. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&Omega;</span> The Helm of the Asciiroth</dt>
+<dd>When you use this artifact, it shoots bullets in all directions that will turn anything they touch to stone. Instantly. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&oslash;</span> The Mirror Shield</dt>
+<dd>Paralyzing and stonifying bullets bounce right off this shield when you're holding it. </dd>
+
+<dt><span style="color: rgb(192, 192, 192)" class="s">&#9765;</span> The Silver Ankh</dt>
+<dd>Quite beautiful. Useless. </dd>
+
+<dt><span style="color: rgb(255, 0, 0)" class="s">&dagger;</span> Terminus Est</dt>
+<dd>Translatable as &ldquo;This is the End,&rdquo; <cite>Terminus Est</cite> is an ancient longsword that kills with far greater efficiency than a common sword. </dd>
+</dl>
+
+</div>
+
+<div class="section" id="monsters">
+
+<dl>
+<dt><span style="color: rgb(0, 255, 255)" class="s">&#1488;</span> Asciiroth</dt>
+<dd>The idiot god that blasphemes and blubbers at the center of the universe. Asciiroth regenerates any of its attendants, so it is better to trap these creatues, or to turn them to stone. Asciiroth himself is hard to kill, but <cite>Terminus Est</cite> has a chance to succeed. </dd>
+
+<dt><span style="color: rgb(218, 112, 214)" class="s">&euro;</span> Cephalid</dt>
+<dd>Cephalids shoot bullets that can turn you to stone instantly. Resistance to this effect, or bombs, are most effective against them. You may also be able to trap them. </dd>
+
+<dt><span style="color: rgb(176, 224, 230)" class="s">v &or;</span> Corvid</dt>
+<dd>Corvids are large birds that will attempt to come up and steal whatever is in your hands. If you chase them down and kill them, the item will fall to the ground. </dd>
+
+<dt><span style="color: rgb(192, 192, 192)" class="s">&curren;</span> Farthapod</dt>
+<dd>Farthapods are bug things that can be killed in any normal way, but they regenerate and return from Farthapod Nests (<span style="color: rgb(176, 196, 222); background-color: rgb(0, 0, 0);" class="s">&equiv;</span>) on the board. </dd>
+
+<dt><span style="color: rgb(255, 215, 0)" class="s">a</span> Killer Bee</dt>
+<dd>It's not really necessary to kill bees, because they die when they hit you. However, they regenerate and return from Bee Hives (<span style="color: rgb(184, 134, 11); background-color: rgb(255, 215, 0);" class="s">&#8962;</span> <span style="color: rgb(184, 134, 11); background-color: rgb(255, 215, 0);" class="s">&#8780;</span>) on the board. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&xi;</span> Great Old One</dt>
+<dd>Great Old Ones cannot be killed. Try to trap, paralyze and/or avoid them. </dd>
+
+<dt><span><div style="display: inline; padding: 0px 1px; color: rgb(106, 90, 205); background-color: rgb(72, 61, 139);" class="s">H</div></span> Hooloovoo</dt>
+<dd>Hooloovoos are hyper-intelligent shades of the color blue. Items fly right through them, bullets bounce off of them, and touching them is decidely annoying. About the only way to eliminate a Hooloovoo is with a well placed bomb. </dd>
+
+<dt><span style="color: rgb(255, 0, 0)" class="s">z</span> Lava Worm</dt>
+<dd>Existing only in lava, these worms are fast but relatively straightforward to kill. When attacked, try to retreat to a tunnel or corner where they cannot surround you. </dd>
+
+<dt><span style="color: rgb(255, 165, 0)" class="s">&pound;</span> Lightning Lizard</dt>
+<dd>Sedentary until aroused, these attack swiftly. When attacked, try to retreat to a corner or hallway where they cannot surround you. </dd>
+
+<dt><span style="color: rgb(0, 0, 255)" class="s">e</span> Optilisk</dt>
+<dd>These are also known as Beholders or floating eyes. They shoot paralyzing bullets. They are slow, but can contribute to the attacks of other monsters by immobilizing you. </dd>
+
+<dt><span style="color: rgb(255, 255, 255)" class="s">&</span> Rhindle</dt>
+<dd>These are easy to kill by all the normal means. </dd>
+
+<dt><span style="color: rgb(107, 142, 35)" class="s">S</span> Sleestak</dt>
+<dd>Sleestaks are slow, hominid lizard creatures. If I made them as lame as they were on <cite>Land of the Lost</cite>, they might hardly qualify as a threat. In <cite>Asciiroth</cite> they carry crossbows and that makes them mildly dangerous. </dd>
+
+<dt><span style="color: rgb(46, 139, 87)" class="s">&part;</span> Tetrite</dt>
+<dd>Tetrites divide when they are hit, getting weaker each time until they die. It is imperative that you retreat to a corner or hallway where they cannot surround you, and where they are less likely to divide successfully. </dd>
+
+<dt><span style="color: rgb(178, 34, 34)" class="s">&ETH;</span> Thermadon</dt>
+<dd>If you know a Thermadon is coming, you can kill it by any normal means. Which is good, because if you don't kill it, the fireballs it shoots will definitely kill you. </dd>
+
+<dt><span style="color: rgb(0, 100, 0)" class="s">&yen;</span> Triffid</dt>
+<dd>Triffids are plants that can move and express hostility. Although their darts do not cause much damage, they will poison you, which prevents you from being able to heal. At the wrong time, if you have no purple mushrooms, this can become an issue. </dd>
+</dl>
+</div>
+
+<div class="footer">
+    &copy; 2009-2014 <a href="http://purl.org/net/alxdark">Alx Dark</a> - 
+    <a href="mailto:alxdark@icculus.org">alxdark@icculus.org</a> - All Rights Reserved 
+</div>
+</body>
+</html>

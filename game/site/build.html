@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>The Tombs of Asciiroth: Build Instructions</title>
+  <link rel="stylesheet" type="text/css" href="asciiroth.css">
+</head>
+
+<body>
+
+<div class="header">
+<h1>The Tombs of Asciiroth</h1>
+
+<h2>Build Instructions</h2>
+
+<p>Here are some instructions that hopefully, will get you to the point where you can change something, build, and run the application to see your change without having to create an entire distribution (which can be slow). </p>
+
+<p>Working with the projects from within Eclipse:</p>
+
+<ol>
+
+<li>Make sure you have the following software unzipped and available (earlier versions of some of these might work, if you've got them installed, but you'll need the specific versions of GWT and Adobe AIR):
+    <ul>
+        <li>Ant 1.7.1 (add directory to your PATH)</li>
+        <li>Eclipse 3.4</li>
+        <li><a href="http://code.google.com/eclipse/">Google's GWT/AppEngine plug-in for Eclipse</a></li>
+        <li>Subclipse (SVN plugin for Eclipse)</li>
+        <li>GWT 1.7 (doesn't actually have to be executable from the command line...)</li>
+        <li>Adobe AIR SDK 1.5.1 (add bin/ directory to your PATH)</li>
+    </ul>
+</li>
+<li>Import the projects:
+    <ul>
+        <li>Use File > Import > Checkout Projects from SVN</li>
+        <li>Create a new repository location: svn://svn.icculus.org/asciiroth</li>
+        <li>Select "trunk/game" and then finish the wizard (<em>project name should be "game" exactly</em>).</li>
+        <li>Repeat and select "trunk/editor" to work on the editor (<em>project name should be "editor" exactly</em>)</li>
+    </ul>
+</li>
+<li>The projects won't build until you fix the GWT_HOME variable to point to the root directory of your GWT distribution.</li> 
+<li>Open the build.properties file in the game directory, and edit the location of the following two variables:
+    <ul>
+        <li>GWT_HOME</li>
+        <li>AIR_HOME</li>
+    </ul>
+</li>
+</ol>
+
+<p>So at this point you've added Ant and Adobe AIR to your path so you can execute "ant" and "adl", you've added a GWT_HOME variable within Eclipse to point to your GWT distribution, and you've edited the build.properties file to point to GWT and AIR. You should have two projects (Asciiroth and Asciiroth Editor) in your workspace that will compile. However, I have never tried to run the build from within Eclipse... you're right, there's an error where Eclipse doesn't get the way the editor build file includes/references the game build file.</p>
+
+<p>Here are the commands I commonly use from the command line:</p>
+
+<p>For the game (from the game/ directory):</p>
+
+<dl>
+<dt>ant compile-air; adl src/adl.xml .</dt>
+    <dd>This compiles the AIR version of the game (into dist/air), then runs it as an Adobe AIR application. Very fast turnaround in order to see your changes in the game, however typically, it's the *editor* that provides an easy way to add pieces to a board and preview how they work, so see below.</dd>
+
+<dt>ant compile</dt>
+    <dd>This compiles the game using GWT's full set of permutations (into dist/web), so the result is the game that can be opened in any web browser. But this is slow... during development this is not very practical.</dd>
+    
+<dt>ant hosted</dt>
+    <dd>Runs the game in GWT's hosted mode browser. On windows, this uses IE under the hood and I swear that upgrading to IE8 made the hosted mode browser faster, fast enough to be useful.</dd> 
+
+<dt>ant debug</dt>
+    <dd>Starts the hosted mode browser but blocks so you can connect to it from Eclipse (or any other debugger) as a remote Java application.</dd>
+</dl>
+
+<p>For the editor (similar but not the same, but from the editor/ directory):</p>
+
+<dl>
+<dt>ant compile pre-dist; adl src/adl.xml .</dt>
+    <dd>Compiles the editor, then copies over the game into the editor, which it needs for the preview feature, then opens up the editor in Adobe AIR. You have to have built the game first. Here's a command that'll do it all, then start the editor:<br/><br/>
+    
+    <code>cd ../game/; ant compile-air; cd ../editor/; ant compile pre-dist; adl src/adl.xml .</code><br/><br/>
+    
+    That command is golden: you can change anything, run it, and get an editor through which you can play with any of your changes to the game by making experimental maps.</dd>
+</dl>
+
+<p>And finally, the command that builds up the entire distribution under game/dist:</p>
+
+<p><code>cd ../game/; ant clean dist; cd ../editor/; ant clean dist</code></p>
+
+
+
+<div class="footer">
+© 2009-2014 <a href="http://purl.org/net/alxdark">Alx Dark</a> - <a
+href="mailto:alxdark@icculus.org">alxdark@icculus.org</a> - All Rights
+Reserved </div>
+</div>
+</body>
+</html>

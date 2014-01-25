@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Triggers</title>
+</head>
+
+<body>
+<p>Triggers are a kind of decorator in software terms; they are a terrain
+that wraps and augments the behavior of any other terrain piece. More
+specifically, they add trigger behavior when the player enters that cell. </p>
+
+<p>Triggers can be broadly classified into triggers that will fire every time
+the cell is entered, and "once" triggers that will fire only one time (when
+they fire, they find and replace all similar triggers on the board with the
+underlying terrain. So the scope of this behavior is limited to the current
+board). Triggers that fire once display a modal message, because it cannot be
+repeated; repeatable triggers show a normal inline message above the board.
+</p>
+
+<p>Triggers that fire when an "if" or "if not" condition is present, test
+against a string called a "flag". (That's a little unfortunate as there are
+also bit flags in the game.) The test is considered true if the flag matches
+the visible name of any item in the player's inventory, or the visible
+description of a flag currently applied to the player. So game behavior can
+most readily be modified by giving the player some item that can be tested
+later by a trigger... most quests and scenario objectives have to be
+structured around acquiring and delivering items.</p>
+
+<p>All triggers have a color (use "None" if your trigger does not fire a
+color event), and an optional message to show the user, as including a
+message is a very common feature of triggers.</p>
+
+<p>When the color event fires, all terrain and agents on the board are
+examined to see if they are a <code>ColorListener</code>... there are many
+pieces that respond to color events. If the color of the event and the color
+of the listener match, the listener will react. In the case of triggers, it's
+likely that you would trigger pieces such as <code>Messenger</code>,
+<code>Flagger</code>, <code>Unflagger</code>, <code>Equipper</code>, and the
+like, to create the behavior you desire for the trigger. These special
+"utility terrains" are just embedded in the board (usually out of the way,
+such as in a wall). The player will not even be aware that the cell in
+question is special in any way.</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<module>
+	<inherits name='com.google.gwt.user.User'/>
+	<inherits name="com.google.gwt.http.HTTP"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
+	<inherits name="com.google.gwt.json.JSON"/>
+	<inherits name="us.asciiroth.LaunchNoEntry"/>
+    
+    <!-- Necessary to prevent JS error in Adobe AIR 1.5.1 involving text lines
+        that are too long for the JS parser, see: 
+        http://code.google.com/p/google-web-toolkit/issues/detail?id=3455
+        -->
+    <set-configuration-property name="compiler.max.vars.per.var" value="995"/>
+
+	<define-property name="editorPersistType" values="air,memory"/>
+	
+	<property-provider name="editorPersistType"><![CDATA[
+		return (typeof window.runtime != "undefined") ? "air" : "memory";
+	]]></property-provider>
+	
+	<replace-with class="us.asciiroth.editor.client.store.AirEditorStore">
+		<when-type-is class="us.asciiroth.editor.client.store.EditorStore"/>
+		<when-property-is name="editorPersistType" value="air"/>
+	</replace-with>
+	<replace-with class="us.asciiroth.editor.client.store.MemoryEditorStore">
+		<when-type-is class="us.asciiroth.editor.client.store.EditorStore"/>
+		<when-property-is name="editorPersistType" value="memory"/>
+	</replace-with>
+	
+	<!-- Firefox 2 had some odd rendering behavior, but it no longer
+		appears to be true. So for the moment, everyone is using
+		the faster DOM rendering implementation. 
+	<replace-with class="us.asciiroth.client.ui.SpanRenderer">
+		<when-type-is class="us.asciiroth.client.ui.Renderer"/>
+	</replace-with>
+	 -->
+	<replace-with class="us.asciiroth.client.ui.DomRenderer">
+		<when-type-is class="us.asciiroth.client.ui.Renderer"/>
+	</replace-with>
+	
+	<!-- This is the only supported version...-->  
+	<set-property name="user.agent" 		value="safari"/>
+	<set-property name="editorPersistType" 	value="air"/>
+	
+	<entry-point class="us.asciiroth.editor.client.Launch"/>
+</module>

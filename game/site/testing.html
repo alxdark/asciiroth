@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Asciiroth Testing</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+  <style type="text/css">
+
+.na { background-color: silver; }
+.pass { background-color: lightgreen; }</style>
+</head>
+
+<body>
+<h3>Current Asciiroth Status</h3>
+
+<p>My current assessment of just how "cross-browser" (and cross operating
+system) Asciiroth is. Please note that cross-browser support isn't a key goal
+for me: my bottom line is Firefox 3 and Adobe AIR. I have very limited access
+to Linux and Mac machines.</p>
+
+<p>The biggest issue has been font support. Help with this would be
+appreciated. Once a game has started, hit F7 to get a table of symbols used
+in the game. The first column is the symbol as rendered; every browser has
+some way of showing "this is a symbol I can't render" (often a square). The
+second column is the string value of the symbol and there's also the name.
+<em>A list of symbols that don't render, as well as your browser, browser
+version and operating system, would be quite helpful.</em></p>
+
+<table border="1" style="width: 100%">
+  <caption></caption>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Display</td>
+      <td>Persistence</td>
+      <td>Keyboard</td>
+      <td>Fonts(1)</td>
+      <td>Performance</td>
+    </tr>
+    <tr>
+      <td>Windows</td>
+      <td>IE</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td>Fail (7)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>Firefox 3</strong></td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Safari</td>
+      <td class="pass">Pass</td>
+      <td>Fail (2)</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>AIR</strong></td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Opera</td>
+      <td class="pass">Pass</td>
+      <td>Fail (2)</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass (6)</td>
+    </tr>
+    <tr>
+      <td>Mac</td>
+      <td>IE</td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>Firefox 3</strong></td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Safari</td>
+      <td class="pass">Pass</td>
+      <td>Fail (2)</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>AIR</strong></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Opera</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Linux (RHEL4)</td>
+      <td>IE</td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+      <td class="na"> </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>Firefox 2</strong></td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Safari</td>
+      <td class="na"></td>
+      <td class="na"></td>
+      <td class="na"></td>
+      <td class="na"></td>
+      <td class="na"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>AIR</strong></td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Opera</td>
+      <td class="pass">Pass</td>
+      <td>Fail (2)</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass</td>
+      <td class="pass">Pass (6)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(1) By using a more conservative set of glyphs, it appears everyone can
+render the game using the simpler set of fonts, and there's a toggle to use
+the extended set.</p>
+
+<p>(2) No Gears support. Eventually may implement with native WHAT 5 support,
+if implemented by browser.</p>
+
+<p>(6) Slow to load scripts, but then runs fine.</p>
+
+<p>(7) IE is unusably slow to load scripts and open dialogs, although it
+otherwise works. On the right machine with IE8, it might be playable.</p>
+</body>
+</html>

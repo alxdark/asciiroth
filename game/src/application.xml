@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/1.0">
+    <id>us.asciiroth.Launch</id>
+    <version>@app.version@</version>
+    <filename>Tombs of Asciiroth</filename>
+	<name>Tombs of Asciiroth</name>
+	<description>The Tombs of Asciiroth</description>
+	<copyright>Copyright 2008, Alx Dark</copyright>
+    <initialWindow>
+        <!-- Works but won't be correct in final .air file. -->
+        <content>Game.html</content>
+        <visible>true</visible>
+        <width>860</width>
+        <height>545</height>
+		<minimizable>true</minimizable>
+		<maximizable>false</maximizable>
+		<resizable>false</resizable>
+    </initialWindow>
+	<icon>
+		<image16x16>icons/asciiroth_16.png</image16x16>
+		<image32x32>icons/asciiroth_32.png</image32x32>
+		<image48x48>icons/asciiroth_48.png</image48x48>
+		<image128x128>icons/asciiroth_128.png</image128x128>
+	</icon>
+    <installFolder>Tombs of Asciiroth</installFolder>
+    <programMenuFolder>Tombs of Asciiroth</programMenuFolder>
+</application>

@@ -1,0 +1,44 @@
+html { overflow-y: scroll; }
+body, td { background-color: black; color: white; font: 11pt Tahoma, sans-serif; margin: 5% 20%; 
+ 
+}
+h1 { font: 15pt Tahoma, sans-serif; margin: 0px; height: 48px; background: black url(asciiroth_48.png) right center no-repeat; }
+h2 { font: 11pt Tahoma, sans-serif; margin: 0px; margin-bottom: 25px; margin-top: -20px; }
+td { vertical-align: top; padding: 1px 2px; }
+li { margin-bottom: 1em; }
+li ul { margin-top: 1em; }
+li li { margin-bottom: 0em; }
+/* .header { background: black url('banner.png') repeat-x; } */
+.version { font-size: 11pt; }
+table, img.screenshot { margin-top: 1.5em; margin-bottom: 1.5em; }
+.playType { width: 100px; font-weight: bold; font-size: larger; font-variant: small-caps; }
+.playExpl { }
+.playFor { margin: .25em; margin-bottom: 1em; color: #666; font-size: 13px; }
+.playLink { white-space: nowrap; }
+.playDep { white-space: nowrap; width: 150px; text-align: right; }
+.footer { margin-top: 25px; border-top: 1px solid white; }
+
+p, li, img.screenshot { color: #ddd; margin-left: 2em; }
+a { text-decoration: none; color: steelblue; font-weight: bold; }
+dt { margin-left: 2em; }
+
+/* Lazy-ass auto-generated list CSS */
+.navlist { margin: 0; padding: 0 0 20px 10px; border-bottom: 1px solid #FFF; }
+.navlist ul, .navlist li { margin: 0; padding: 0; display: inline; list-style-type: none; }
+.navlist a:link, .navlist a:visited { float: left; line-height: 14px; font-weight: bold;
+    margin: 0 10px 4px 10px; text-decoration: none; color: #999; }
+.navlist a:hover, .navlist a.selected {
+    border-bottom: 4px solid #FFF; padding-bottom: 2px; background: transparent; color: #FFF; }
+.navlist a:hover { color: #FFF; }
+
+em { color: #FFF; }
+h3 { border-bottom: 1px solid #333; }
+#status { background-color: lightyellow; border: 1px solid yellow; color: black; 
+    padding: .5em 1em; margin-bottom: 1.5em; }
+dt span { display: block; width: 30px; float: left; }
+dd { margin-left: 30px; margin-bottom: .75em; color: #999; }
+
+.defects td { border: 1px solid silver; border-collapse: collapse; padding: 2px 5px; }
+.defects th { border: 1px solid silver; border-collapse: collapse; font-variant: small-caps; color: black;
+    text-align: left; padding: 2px 5px; white-space: pre; background-color: ghostwhite;  }
+.news { font-size: larger; color: lime; font-variant: small-caps; font-weight: bold; }

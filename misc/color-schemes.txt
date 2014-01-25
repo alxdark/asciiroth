@@ -1,0 +1,47 @@
+Background Forest
+Field           #339941
+Forest          #267130
+Grass           #1D7C2A
+
+Foreground Colors (?) Trees, Grass
+            Conifer     Deciduous   Tree        Grass
+            &#9824;     &#9827;     &#978;      &#8230;
+FOREST     Spruce      Maple       Cypress     Meadow
+GRASS      Hemlock     Elm         Willow      Grass     
+FIELD      Fir         Oak         Alder       Swamp
+
+Autumn Colors
+#CCB200
+#7F2800
+#CC6600
+
+
+Brown Mushroom  #7F6600
+
+
+Greens       
+
+FFFFCC
+C2E699
+78C679
+31A354
+6837
+
+Greens 2
+
+EDF8E9
+BAE4B3
+74C476
+31A354
+6D2C
+
+Red
+A50F15
+
+Brown
+A63603
+
+Blues
+BDC9E1
+74A9CF
+2B8CBE

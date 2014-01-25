@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings
+aircert.pfx
+.DS_Store
+dist
+bin
+

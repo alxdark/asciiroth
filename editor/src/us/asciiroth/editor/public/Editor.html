@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>The Tombs of Asciiroth Editor</title>
+    <script src="init.js"></script>
+    <link rel="stylesheet" href="asciiroth.css" type="text/css"/>
+    <link rel="stylesheet" href="asciiroth-editor.css" type="text/css"/>
+</head>
+<body style="background-color: black">
+<noscript>Doh, JavaScript is disabled.</noscript>
+<div id="layout">
+    <table align="center" cellpadding="3" border="0">
+        <tr>
+        	<td colspan="2">
+        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        			<tr>
+			            <td id="title">Asciiroth Editor</td>
+			            <td id="appBar"></td>
+        			</tr>
+        		</table>
+        	</td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        			<tr>
+			            <td>
+			            	<span id="filePath"></span>
+		            	</td>
+			            <td width="40"><span id="makeName"></span></td>
+			            <td width="18" ><img src="icons/pencil.png" id="dirtyIcon"/></td>
+        			</tr>
+        		</table>
+			</td>
+        </tr>
+        <tr>
+            <td id="boardPanel"></td>
+            <td id="sideViews"></td>
+        </tr>
+        <tr>
+        	<td colspan="2"><div id="instancePaletteHolder"></div></td>
+        </tr>
+    </table>
+</div>
+<script src="us.asciiroth.editor.Launch.nocache.js"></script>
+</body>
+</html>

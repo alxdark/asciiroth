@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>The Tombs of Asciiroth</title>
+<link rel="stylesheet" type="text/css" href="asciiroth.css" />
+<script type="text/javascript" src="gears.js"></script>
+<script type="text/javascript" src="jquery-1.2.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var section = (document.location.hash) ? document.location.hash.substring(1) : "play";
+    toggle(section);
+    $("a.secLink").click(function(event) {
+        // next two lines prevent scrolling in Firefox
+        event.preventDefault();
+        document.location.hash = this.href.split("#")[1];
+        toggle(this.href.split("#")[1]);
+    });
+    function toggle(id) {
+        $("a.secLink").removeClass("selected").each(function() {
+            if (this.href.split("#")[1] == id) {
+                $(this).addClass("selected");
+            }
+        });
+        $("div.section").hide();
+        $("div#"+id).show();
+    }
+});
+</script>
+</head>
+
+<body>
+
+<div class="header">
+<h1>The Tombs of Asciiroth</h1>
+
+<h2>An HTML5 puzzle/adventure game based in a world of font-based abstraction</h2>
+
+<div class="navcontainer">
+<ul class="navlist">
+  <li><a class="secLink selected" href="#play">Play</a></li>
+  <li><a class="secLink" href="#create">Create</a></li>
+  <li><a class="secLink" href="#dev">Develop</a></li>
+  <li><a class="secLink" href="#license">License</a></li>
+</ul>
+</div>
+</div>
+
+<p class="version">Version @app.version@ released @app.date@.</p>
+
+<div class="section" id="play">
+<img class="screenshot" alt="[Screenshot]" src="screenshot.png"
+style="border: 1px solid #333; padding: 3px; width: 393px; height: 213px"> 
+
+<p>The Tombs of Asciiroth is a free, open source game you can play right now
+in your browser. It has arcade, puzzle and exploration-style game play in an
+extensive world of font-based abstraction. </p>
+
+<p>If it looks a little old school, it's only because I've been trying to
+make this game since 1980. But other things kept getting in the way. Hope you
+have some fun with it. </p>
+
+<p>Play Asciiroth one of two ways: </p>
+
+<table class="play" border="0">
+    <tr>
+        <td class="playType">Online </td>
+        <td>
+            <div class="playLink">
+                <a href="web/us.asciiroth.Launch/Game.html">The Tombs of Asciiroth (Web Version)</a>
+            </div>
+            <div class="playFor">
+                Play Asciiroth using any modern web browser (for IE this matters, use version 10 or above). </div>
+        </td>
+        <td class="playDep"></td>
+    </tr>
+    <tr>
+        <td class="playType">Desktop </td>
+        <td>
+            <div class="playLink">
+                <a href="asciiroth.air">The Tombs of Asciiroth (Adobe AIR Version)</a> 
+            </div>
+            <div class="playFor">
+                Install Asciiroth using Adobe AIR. Windows, Mac or Linux. This is the 
+                "hold it in your hands, works everywhere" way to play.
+            </div>
+        </td>
+        <td class="playDep">
+            <a href="http://get.adobe.com/air/" target="_blank">Install Adobe Air</a>
+        </td>
+    </tr>
+    <tr>
+        <td class="playType"></td>
+        <td>
+            <div class="playLink">
+                <a target="_blank" href="player.html">Player's Guide</a>
+            </div>
+            <div class="playFor">
+                The guide talks tactics and introduces many of the things you'll find in the game.
+            </div>
+        </td>
+        <td class="playDep"></td>
+    </tr>
+</table>
+
+<p><b class="news">News:</b> A lot has changed since I first wrote this game in 2008(?) I've 
+recompiled against newer versions of GWT and Adobe AIR so everything should run and be up-to-date, 
+and replaced Google Gears with the standard APIs for saving data in newer browsers. </p>
+
+<p>I'm not going to work on this game anymore because GWT is a legacy technology that has been 
+superceded by faster JavaScript engines and vastly better JavaScript programming tools. But 
+the editor still works and provides a huge number of game pieces, relative even to what is 
+used in the scenarios included with the current game. So I may do some more level design at 
+some point. </p>
+
+<p>Thanks to everyone who has written in with comments, bug reports, and suggestions! It makes 
+it all worthwhile to hear someone finished the game. </p>
+
+</div>
+
+<div class="section" id="create">
+
+<img class="screenshot" alt="[Editor Screenshot]" src="screenshot-editor.png"
+style="border: 1px solid #333; padding: 3px; width: 396px; height: 323px"> 
+
+<p>Asciiroth has a map editor that can be used to create maps. Read the
+<a href="map-guide.html">Guide to Creating Asciiroth Maps</a> for details, 
+and the <a href="api/index.html">API documentation</a> for a description of 
+all the available pieces and how they work. I'm also happy to answer questions
+and/or fix the code if it's needed to create scenarios. </p>
+
+<table border="0">
+    <tbody>
+        <tr>
+            <td class="playType">Desktop</td>
+            <td>
+            <div class="playLink">
+                <a href="asciiroth-editor.air">Asciiroth Map Editor (Adobe AIR Version)</a>
+            </div>
+            <div class="playFor">
+                Only available as an AIR application, because it needs to load and 
+                save map files. 
+            </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>WARNING:</strong> It's impossible to work on either the code or
+the maps without encountering spoilers. You might want to play the game
+first. </p>
+
+</div>
+
+<div class="section" id="dev">
+
+<h3>The Code</h3>
+
+<p>The code has been moved to GitHub, I don't work on this game (or GWT) anymore. There are 
+better ways to do something like this now. However by and large, all the instructions below are 
+accurate if you want to tinker:</p>
+
+<ul>
+    <li><a href="http://svn.icculus.org/asciiroth/">Source</a></li>
+    <li><a href="defects.html">Defects</a></li>
+    <li><a href="build.html">Build Instructions</a></li>
+    <li><a href="api/index.html">JavaDocs</a> (API documentation, but also good for looking up pieces)</li>
+    <li><a href="testing.html">Cross-Browser Test Status</a></li>
+</ul>
+
+<p>The game has been made with the Google Web Toolkit, Eclipse, and Ant. </p>
+
+<h3>Release Notes</h3>
+
+<h4>0.8</h4>
+
+<p>Moved source code, recompiled to recent versions of GWT (2.5) and Adobe AIR (4). </p>
+
+<h4>0.7</h4>
+
+<p>Updated to GWT 1.7. The game will now work in Safari 4 and Adobe AIR 1.5.1. </p>
+
+<p>Support for HTML 5 database persistence. On Safari 4 you no longer need a plugin to save games, it 
+will just work. I expect the same to be true of Firefox as well, in some future release. </p>
+
+<p>Tons of new pieces: waterfalls, rafts, bridges, campfires, mushrooms, kiwis, apples, bread, daggers, 
+slings, hammers, colored wall pieces, trash heaps, haystacks, pressure plates, crevasses, pylons and 
+crystals to open the pylons (most to create a scenario that's a little more RPG, a little less puzzle-oriented). 
+Ranged weapons can (optionally) require ammo to use, and you can place ammo in the editor. 
+Chests/crates can hold multiple items. </p>
+
+<p>This is getting to a pre-release state. What holds me off from designating 1.0 is that I will take 
+a final pass for bugs due to all the new pieces, and I would like one more good scenario in the final
+release (having cut my teeth on the TOA scenario, I feel I can do better, and only a small fraction 
+of the available pieces and capabilities are in that scenario.)
+
+<h4>0.6.3</h4>
+
+<p>Fixed bug where you couldn't finish TOA scenario, a but that users would not find until being literally
+one step away from victory. Easily the meanest thing I've ever done as a programmer, if not 
+the Hooloovo. </p>
+
+<h4>0.6.2</h4>
+
+<p>Scenario updates/fixes. </p>
+
+<h4>0.6.1</h4>
+
+<p>Updates to the gold castle scenario. </p>
+
+<h4>0.6</h4>
+
+<p>New scenario, usability enhancements to map editor, some bug fixes. </p>
+
+<h4>0.5.2</h4>
+
+<p>Fixed a bug that messed up the ending of the TOA scenario; worked on performance. 
+The game now works quite well in IE8 although there are some further steps that can be taken. </p>
+
+<h4>0.5.1</h4>
+
+<p>Save game did not work correctly (SQL was wrong). </p>
+
+<h4>0.5</h4>
+
+<p>You can now save a game under a different name, so you can have more than one save point in a 
+game. You can now load a scenario from the new game dialog (AIR only), so they don't have 
+to be included directly in the game. Map making instructions are updated to describe how 
+to create a functional stand-alone scenario, and the editor allows you to enter the scenario data, 
+so that closes the loop on that. Bug fixes to maps and pieces, mostly minor to the game, 
+although you can now pick stuff up that lands on low terrain like chests, crates and urns. </p>
+
+<h4>0.4.3</h4>
+
+<p>Addresses focus goofiness, and keyboard shortcuts not working to control the browser. </p>
+
+<h4>0.4.2</h4>
+
+<p>Fixes for a number of reported bugs. Keyboard mapping revised to work on international keyboard layouts. Font symbols revised for better compatability. Mouse-based navigation improved a bit. </p>
+
+<h4>0.4.1</h4>
+
+<p>Fixed a bug that hanged saving when there's something continually flying through the air. </p>
+
+<h4>0.4</h4>
+
+<p>This is a complete release. After this, I'll try and keep things backwards compatible. </p>
+<ul>
+    <li>The main TOA scenario and a tutorial are done (probably will be tweaked further). </li>
+    <li>New game pieces (pushers, sliders), new critters, now organized in groups in the map editor</li>
+    <li>Refinements to both the game and map editor UIs</li>
+    <li>Performance work (bit flags, compile-time class swapping, etc.). </li>
+    <li>Bug fixes, of course. </li>
+</ul>
+
+<h4>0.3</h4>
+
+<ul>
+  <li>A large number of new pieces have been added, including many more
+    agents and some pretty entertaining puzzle pieces like the reflector and
+    the force field. </li>
+  <li>The "AI" (if you could call it that) has been improved. Agents navigate
+    doors and corners now, and use breadcrumb pathfinding to track the
+    player. </li>
+  <li>The map editor now includes the ability to play a map in preview mode,
+    which is extremely helpful when developing maps. See the help doc from
+    within the editor. </li>
+  <li>A lot of cleanup of the code, and expansion of lifecycle methods.</li>
+</ul>
+
+<h4>0.2</h4>
+
+<p>Initial release on icculus.org. </p>
+
+<h4>Planned</h4>
+
+<ul>
+    <li>Localization, if anyone wants to translate it (easy to do with GWT) </li>
+    <li>Implement WHAT 5 storage provider, so you can save games as this becomes available in browsers (particularly Safari). </li>
+    <li>More pieces as really worthwhile ideas come up. (Should look over ZZT for relevant ideas.)</li>
+</ul>
+
+<h3>References</h3>
+
+<p>Some helpful sites for designing the visual appearance of pieces: </p>
+<ul>
+  <li><a href="http://halflife.ukrpack.net/csfiles/help/colors.shtml"
+    target="_blank">Web Colors</a></li>
+  <li><a href="http://www.digitalmediaminute.com/reference/entity/"
+    target="_blank">XHTML Character Entity Reference</a></li>
+  <li><a href="http://www.alanwood.net/unicode/">Unicode and Multilingual
+    Support in HTML, Fonts, Web Browsers and Other Applications</a></li>
+</ul>
+</div>
+
+<div class="section" id="license">
+<p>The Tombs of Asciiroth and the map editor are provided under the <a
+href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a>. </p>
+
+<p>(That means it's free to play, and available to change as you like, with attribution.) </p>
+
+<p>The development tools are, with the exception of Adobe AIR, open
+source under various licenses. AIR isn't necessary to build the game and/or
+play it in a browser. </p>
+</div>
+
+<div class="footer">
+    &copy; 2014 <a href="http://alxdark.com/">Alx Dark</a> - 
+    <a href="mailto:alxdark@gmail.com">alxdark@gmail.com</a> - All Rights Reserved 
+</div>
+
+</body>
+</html>

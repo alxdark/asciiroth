@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project name="The Tombs of Asciiroth Editor" basedir="." default="compile">
+    <description>The Tombs of Asciiroth Editor</description>
+    
+    <!-- Resolve a reference to the base properities in Asciiroth... -->
+    <property file="build.properties"/>
+    <property file="../game/build.properties"/>
+    <import file="../game/build.xml"/>
+    
+    <path id="classpath">
+        <pathelement location="./src" />
+        <pathelement location="./bin" />
+        <!-- This does pull in the public directory, where a jar might not,
+            but it's far more convenient when working. -->
+        <pathelement location="../game/src" />
+        <pathelement location="${GWT_HOME}/gwt-user.jar" />
+        <pathelement location="${GWT_HOME}/gwt-dev.jar" />
+    </path>
+    
+    <target name="compile" description="test">
+        <gwt-compiler   gwt-module-classpath    ="resources/air-editor"
+                        app-dir                 ="dist/editor"
+                        app-entry-class         ="us.asciiroth.editor.Launch"/>
+    </target>
+    
+    <target name="air" depends="prepare, compile, stamp">
+        <adt-packager   app-filename="asciiroth-editor"
+                        app-dir="dist/editor"
+                        app-entry-class="us.asciiroth.editor.Launch"/>
+    </target>
+
+    <target name="pre-dist">
+        <!-- Copy the game into the editor for map preview feature. -->
+        <mkdir dir="dist/editor/us.asciiroth.editor.Launch/us.asciiroth.Launch"/>
+        <copy todir="dist/editor/us.asciiroth.editor.Launch/us.asciiroth.Launch">
+            <fileset dir="../game/dist/air/us.asciiroth.Launch"/>
+        </copy>
+    </target>
+    
+    <target name="stamp">
+        <stamp-output air-descriptor="dist/asciiroth-editor"/>
+    </target>
+    
+    <target name="dist" depends="compile, pre-dist, stamp, air">
+        <!-- Copy over editor-specific site docs to site dist. -->
+        <copy todir="../game/dist">
+            <fileset dir="site"/>
+        </copy>
+        
+        <!-- Delete the un-AIR'ed versions before copying over. -->
+        <delete dir="dist/editor"/>
+        
+        <!-- Now copy the editor code into the site dist. -->
+        <copy todir="../game/dist">
+            <fileset dir="dist"/>
+        </copy>
+        
+        <!-- Final clean up of the game dist directory. -->
+        <delete dir="../game/dist/air"/>
+        <delete dir="../game/dist/asciiroth"/>
+        <delete dir="../game/dist/asciiroth-editor"/>
+    </target>
+</project>
