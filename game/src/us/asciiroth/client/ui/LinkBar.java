@@ -41,17 +41,6 @@ public class LinkBar {
 				Game.get().selectSaveGameName();
 			}
         });
-        Hyperlink installGears = new Hyperlink("Install Google Gears to save game", "gears");
-        installGears.addClickHandler(new ClickHandler() {
-        	public void onClick(ClickEvent event) {
-                // Pauses the game included the focus behavior.
-                Game.get().mainMenu();
-                Window.open(
-                    Util.format(GEARS_LINK, GEARS_MESSAGE, RETURN_URL),
-                    "installGears", 
-                    "");
-        	}
-        });
         Hyperlink fonts = new Hyperlink("Show extended fonts", "fonts");
         fonts.addClickHandler(new ClickHandler() {
         	public void onClick(ClickEvent event) {
@@ -96,12 +85,8 @@ public class LinkBar {
         
         // Create link bar
         RootPanel linkBar = RootPanel.get("linkBar");
-        if (!Game.get().isTestGame()) {
-            if (Game.get().getProfile().isPersistenceProvided()) {
-                linkBar.add(saveGame);
-            } else {
-                linkBar.add(installGears);
-            }
+        if (Game.get().getProfile().isPersistenceProvided()) {
+            linkBar.add(saveGame);
             linkBar.add(new Label(" | "));
         }
         linkBar.add(fonts);
